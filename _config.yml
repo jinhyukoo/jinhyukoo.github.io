@@ -5,17 +5,17 @@ gems:
 - jekyll-paginate
 exclude:
 - "/vendor/"
-title: 줌코딩의 코딩일기
-subtitle: Zoom in Coding
-email: gur5381@gmail.com
-name: Jinhyeok Jeong
-description: 'Zoom in Coding from the Basic.'
+title: 진혀크의 코딩잼
+subtitle: Joyful Programmer JH!
+email: faill456@naver.com
+name: Jinhyuk Choi
+description: 'Enjoy and be the Best'
 baseurl: ''
-url: https://zoomkoding.github.io
+url: https://jinhyukoo.github.io
 plugins_dir:
 - jekyll-sitemap
-cover: "/assets/header_image.jpeg"
-logo: "/assets/Crewcials.jpeg"
+cover: "/assets/header_image.jpg"
+logo: "/assets/logo.jpg"
 markdown: kramdown
 paginate: 5
 paginate_path: "/page:num/"
@@ -30,24 +30,23 @@ jekyll-archives:
   permalinks:
     category: "/category/:name/"
     tag: "/tag/:name/"
-disqus_shortname: zoomKoding
-ga_tracking_id: UA-83878761-1
+disqus_shortname: jinhyukoo
 descriptions:
 - cat: jekyll
   desc: Posts describing Jekyll setup techniques.
 social:
 - name: GitHub
   icon: github
-  username: ZoomKoding
-  url: https://github.com/zoomkoding
+  username: jinhyukoo
+  url: https://github.com/jinhyukoo
   desc: Fork me on GitHub
   share: false
 protocols:
-  fb_image: "/assets/crewcials.jpeg"
+  fb_image: "/assets/logo.jpg"
   fb_image_width: 612
   fb_image_height: 605
   fb_image_type: image/png
-  twitter_image: "/assets/crewcials.jpeg"
+  twitter_image: "/assets/logo.jpg"
   os_repo: https://github.com/bencentra/centrarium.com
   os_rcs_type: git
   os_src: git@github.com:bencentra/centrarium.com.git
