@@ -1,0 +1,53 @@
+---
+gems:
+- jekyll-archives
+- jekyll-sitemap
+- jekyll-paginate
+exclude:
+- "/vendor/"
+title: 줌코딩의 코딩일기
+subtitle: Zoom in Coding
+email: gur5381@gmail.com
+name: Jinhyeok Jeong
+description: 'Zoom in Coding from the Basic.'
+baseurl: ''
+url: https://zoomkoding.github.io
+plugins_dir:
+- jekyll-sitemap
+cover: "/assets/header_image.jpeg"
+logo: "/assets/Crewcials.jpeg"
+markdown: kramdown
+paginate: 5
+paginate_path: "/page:num/"
+inter_post_navigation: true
+highlightjs_theme: monokai-sublime
+jekyll-archives:
+  enabled:
+  - categories
+  - tags
+  layout: archive
+  comments: true
+  permalinks:
+    category: "/category/:name/"
+    tag: "/tag/:name/"
+disqus_shortname: zoomKoding
+ga_tracking_id: UA-83878761-1
+descriptions:
+- cat: jekyll
+  desc: Posts describing Jekyll setup techniques.
+social:
+- name: GitHub
+  icon: github
+  username: ZoomKoding
+  url: https://github.com/zoomkoding
+  desc: Fork me on GitHub
+  share: false
+protocols:
+  fb_image: "/assets/crewcials.jpeg"
+  fb_image_width: 612
+  fb_image_height: 605
+  fb_image_type: image/png
+  twitter_image: "/assets/crewcials.jpeg"
+  os_repo: https://github.com/bencentra/centrarium.com
+  os_rcs_type: git
+  os_src: git@github.com:bencentra/centrarium.com.git
