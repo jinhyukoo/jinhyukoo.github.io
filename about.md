@@ -102,4 +102,17 @@ permalink: /about/
 **결과물**
 <img src="{{ site.baseurl }}/assets/Negend.jpg" title="Result Picture" class="picture">
 
+### 대경권 프로그래밍 경진대회
+**대경권 프로그래밍 경진대회란?**
+* 대구경북권 4개 대학의 학생들이 참여하는 프로그래밍 경진대회란
+* ACM-ICPC와 비슷한 점수제도를 가지고 있다. 다른 점이 있다면 부분 점수가 존재한다는 것.
+
+**느낀점**
+* 솔직히 제실력을 다 못보여준 것 같아서 아쉬웠다. 문제를 정확하게 다 풀어야 한다는 욕심 때문에 부분점수를 받을 수 있는 문제들도 제대로 풀지 못했다. 다음에 대경권 프로그래밍 경진대회에 참여할 기회는 없겠지만 다른 기회가 생긴다면 좀 더 이성적이고 전략적으로 대회에 임하고 싶다.
+* 제실력을 못 보여준 가장 큰 이유는 그냥 실력이 없어서 그렇다 ㅎ... 더 열심히 노력하자!
+* 그래도 ACM-ICPC 이후 첫 코딩대회이자 오랜만에 PS를 했는데 생각보다는 잘 한 것 같다..!
+
+**결과물**
+<img src="{{ site.baseurl }}/assets/tk_scoreboard.png" title="Result Picture" class="picture">
+
 [Github]: https://github.com/jinhyukoo
