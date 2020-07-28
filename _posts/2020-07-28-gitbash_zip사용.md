@@ -25,6 +25,7 @@ Gitbash에서 Linux를 공부하다가 만난 문제이다.
 압축을 푼 뒤 zip.exe파일과 bzip2.dll 파일을 찾는다. bin폴더에 들어있을 것이다.
 
 2개의 파일을 git/usr/bin 에 넣어주면 끝! (git/bin이 아니고 git/usr/bin이다.)
+
 <img src="{{ site.baseurl }}/assets/git_route.PNG" width = "70%" height ="50%" title="webpage_capture" class="picture">
 
 터미널을 재부팅한 후 터미널에서 zip 명령어를 실행해보면 잘 되는 것을 확인할 수 있을 것이다!
