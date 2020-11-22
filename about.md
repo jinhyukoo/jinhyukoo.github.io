@@ -61,6 +61,8 @@ permalink: /about/
 
 * 2020.10.10 2020 ACM-ICPC 학교 예선 참여 with Negend(zoomKoding, 이예준)
 
+* 2020.11.14 2020 ACM-ICPC Seoul Regional 참여 with Negend -> 결과는 참담...
+
 <h2><center>경험해본 것들 이야기!</center></h2>
 
 ### 모바일 앱 개발 수업
