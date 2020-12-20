@@ -17,7 +17,7 @@ WebRTC 공식문서와 MDN의 설명을 빌려 다음과 같이 정리해보았�
 >WebRTC는 웹 표준으로 구현되었으며 P2P 방식을 활용하여 웹 애플리케이션과 사이트가 중간자 없이 브라우저 간에 오디오나 영상 미디어를 받아와 스트림할 수 있게 해주며 데이터 교환 역시 가능하게 해준다. 
 WebRTC는 플러그인이나 다른 소프트웨어의 설치가 필요 없으며 대부분의 브라우저에서 JavaScript API로 지원되고 있다.
 
-## WebRTC의 3가지 주요 API
+## WebRTC 사용을 위한 3가지 주요 API
 
 WebRTC에서는 여러 API를 제공하고 있으나 그 중에서도 핵심이 되는 3가지 API가 있다.
 
@@ -64,7 +64,8 @@ PeerJS에서는 RTCPeerConnection을 call이라는 메소드를 활용해 처리
 ### RTCDataChannel
 이 부분은 조금 헷갈리는 부분이다. 내가 본 WebRTC 공식 문서 가이드에서는 RTCDataChannel을 통해 Message를 전송하는 예제를 다루고 있는데 PeerJS를 확인해봤더니 DataConnection과 MediaConnection 두 개의 객체에 대한 설명이 따로 있었다. DataConnection의 설명을 보면 WebRTC의 DataChannel을 감싸고 있는 객체라고 설명이 되어 있다. 또한 각각을 얻는 메소드도 connect과 call로 구분이 되어 있다. 우리가 코드에서 활용한 call에서는 MediaConnection이라는 객체를 return하고 있다. 메시지와 영상/음성 데이터의 전송이 따로 관리되고 있는 건가 라는 생각이 들어서 WebRTC의 dataChannel에 대해 좀 더 검색을 해봤더니 MDN 문서에서 다음과 같이 설명하는 것을 확인할 수 있었다.
 
->RTCPeerConnection 인터페이스의 createDataChannel() 메소드는 어떤 형식의 데이터든 송신 할 수 있도록 원격 유저와 연결하는 신규 채널을 생성합니다.
+
+RTCPeerConnection 인터페이스의 createDataChannel() 메소드는 어떤 형식의 데이터든 송신 할 수 있도록 원격 유저와 연결하는 신규 채널을 생성합니다.
 이 방법은 이미지, 파일 전송, 문자 채팅, 게임 패킷 업데이트 등과 같은 백채널 컨텐츠에 유용하게 사용 가능합니다.
 
 
