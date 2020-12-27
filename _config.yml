@@ -6,10 +6,10 @@ gems:
 exclude:
 - "/vendor/"
 title: 진혀크의 코딩잼
-subtitle: Joyful Programmer JH!
+subtitle: 협업을 사랑하는 개발자 Jinhyukoo!
 email: faill456@naver.com
 name: Jinhyuk Choi
-description: 'Enjoy and be the Best'
+description: '항상 즐겁고 행복하게!'
 baseurl: ''
 url: https://jinhyukoo.github.io
 plugins_dir:
