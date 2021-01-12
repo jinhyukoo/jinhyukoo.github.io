@@ -31,6 +31,7 @@ jekyll-archives:
     category: "/category/:name/"
     tag: "/tag/:name/"
 disqus_shortname: jinhyukoo
+google-analytics: [tracking-id]
 descriptions:
 - cat: jekyll
   desc: Posts describing Jekyll setup techniques.
