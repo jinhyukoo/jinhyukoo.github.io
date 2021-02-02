@@ -305,7 +305,7 @@ query HeroNameAndFriends($episode: Episode = JEDI) {
 - `Boolean`: `true` 또는 `false`.
 - `ID`: 기본적으로는 string이지만 고유 식별자를 나타내기 위해 쓰인다.
 
-**enums 예제 (얄코 강의 55분을 참고하면 사용법을 알기 좋아요!)**
+**enums 예제**
 
 ```jsx
 enum Episode {
@@ -444,9 +444,16 @@ schema {
 
 ! 가 붙는다는 것은 null값을 반환받지 않겠다는 의미이다. 다음 표를 참고하면 좀 더 쉽게 이해할 수 있다.
 
-![Apollo%20%E1%84%86%E1%85%B5%E1%86%BE%20GraphQL%20%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5%201336662fa75e4368b58a97e5cbc75c4a/Untitled.png](Apollo%20%E1%84%86%E1%85%B5%E1%86%BE%20GraphQL%20%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5%201336662fa75e4368b58a97e5cbc75c4a/Untitled.png)
 
-### Interface (얄코 3-3을 참고하면 좋아요)
+.|data:null|data:[]|data:[...,null]
+----|:---:|:---:|:---:
+[String]|⭕|⭕|⭕
+[String!]|⭕|⭕|❌
+[String]!|❌|⭕|⭕
+[String!]!|❌|⭕|❌
+
+
+### Interface
 
 유사한 객체 타입을 만들기 위한 공통 필드 타입이다.
 
