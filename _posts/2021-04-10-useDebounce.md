@@ -106,5 +106,5 @@ useEffect의 두 번째 인자로 debouncedEmail과 debouncedPassword를 담은 
 <img src="{{ site.baseurl }}/assets/useDebounce/debounce.gif" alt="debounce example" title="debounce example" class="picture">
 
 ### 참고자료
-- 제네릭 타입에 관한 설명 : https://hyunseob.github.io/2017/01/14/typescript-generic/
-- useDebounce hook 제작 : https://dev.to/gabe_ragland/debouncing-with-react-hooks-jci
+- [제네릭 타입에 관한 설명](https://hyunseob.github.io/2017/01/14/typescript-generic/)
+- [useDebounce hook 제작](https://dev.to/gabe_ragland/debouncing-with-react-hooks-jci)
