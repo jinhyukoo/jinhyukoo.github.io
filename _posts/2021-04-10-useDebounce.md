@@ -105,7 +105,7 @@ useEffect의 두 번째 인자로 debouncedEmail과 debouncedPassword를 담은 
 
 <img src="{{ site.baseurl }}/assets/useDebounce/debounce.gif" alt="debounce example" title="debounce example" class="picture">
 
-### 좀 더 범용적인 util 함수로 만들어보기
+### 좀 더 범용적인 util 함수로 만들어보기 👨‍🏫
 
 위와 같은 형태의 useDebounce는 컴포넌트 내에서 hook으로 밖에 사용할 수 없다는 한계가 있습니다. setTimeout과 clearTimeout을 그대로 사용하되 약간 형태를 바꿔 범용적으로 사용할 수 있게 해보겠습니다.
 useDebounce 파일을 아래와 같이 바꿔주세요.
