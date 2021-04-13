@@ -1,9 +1,9 @@
 ---
-title: 리액트 useDebounce Hook 만들어보기
+title: 리액트 useDebounce Hook 사용해보기
 layout: post
 date: '2021-04-10 15:06:00'
 author: 진혀쿠
-tags: useDebounce debounce throttle React 리액트 hook useState useEffect
+tags: useDebounce debounce throttle React 리액트 hook useState useEffect 사용법 typescript
 cover: "/assets/instacode.png"
 categories: WEB
 ---
@@ -104,6 +104,85 @@ useEffect의 두 번째 인자로 debouncedEmail과 debouncedPassword를 담은 
 다음과 같이 잘 실행되는 것을 확인할 수 있습니다.
 
 <img src="{{ site.baseurl }}/assets/useDebounce/debounce.gif" alt="debounce example" title="debounce example" class="picture">
+
+### 좀 더 범용적인 util 함수로 만들어보기
+
+위와 같은 형태의 useDebounce는 컴포넌트 내에서 hook으로 밖에 사용할 수 없다는 한계가 있습니다. setTimeout과 clearTimeout을 그대로 사용하되 약간 형태를 바꿔 범용적으로 사용할 수 있게 해보겠습니다.
+useDebounce 파일을 아래와 같이 바꿔주세요.
+
+```
+// utils/useDebounce.ts
+
+const useDebounce = (func: any, wait: number) => {
+  let timeout: NodeJS.Timeout | null;
+  return (...args: any) => {
+    const context = this;
+    if (timeout) clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      timeout = null;
+      func.apply(context, args);
+    }, wait);
+  };
+};
+
+export default useDebounce;
+```
+
+원리는 동일합니다. 이미 이벤트가 진행되고 있을 경우 이벤트를 초기화 시키는 방식입니다.
+
+```
+// components/molecules/LoginModalContent.tsx
+
+...
+
+const LoginModalContent = ({ onModalClose }: LoginModalContentProps): JSX.Element => {
+  const classes = useStyles();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isValidEmail, setIsValidEmail] = useState(true);
+  const [isValidPassword, setIsValidPassword] = useState(true);
+
+  const onDebouncedEmailChangeListener = useDebounce((e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  }, 500);
+
+  const onDebouncedPasswordChangeListener = useDebounce((e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  }, 500);
+
+  useEffect(() => {
+    if ((email.length !== 0 && email.length < 8) || email.length > 12) setIsValidEmail(false);
+    else setIsValidEmail(true);
+  }, [email]);
+
+  useEffect(() => {
+    if ((password.length !== 0 && password.length < 8) || password.length > 12) setIsValidPassword(false);
+    else setIsValidPassword(true);
+  }, [password]);
+
+...
+
+```
+
+LoginModalContent같은 경우 위와 같이 코드를 변경해주었습니다. 함수를 전달 받아서 실행할 수 있으니 onChange에 바로 debounce를 적용시킨 Listener를 넘겨줘도 되지 않나라고 생각하실 수 있는데 useState로 상태값을 변경하게 될 경우 비동기로 작동하기 때문에 변경된 상태값을 바로 활용할 수 없습니다. 따라서 이전 상태를 토대로 렌더링이 되기 때문에 useEffect를 활용하여 상태값이 변할 때마다 입력값이 유효한지 검사해주었습니다. email과 password가 서로에게 영향을 끼치지 않기 때문에 비즈니스 로직을 한 번만 수행하고자 useEffect를 두 번 사용했습니다.
+
+저의 프로젝트 기준 두 방법의 차이는 다음과 같습니다.
+- 첫 번째 방법의 경우 email의 상태는 계속해서 변화하지만 email이 변화하는 동안에 유효성 검사 로직이 실행되지 않습니다.
+- 두 번째 방법은 email의 상태 변화 자체에 debounce를 적용시킨 경우입니다. 유저가 입력 이벤트 지속하는 동안 email의 상태 자체가 변하지 않습니다.
+
+따라서 성능 측면에서는 두 번째 방법이 유리합니다. 리액트 개발자 도구를 활용하여 렌더링 상태를 보면 다음과 같이 차이가 난다는 것을 확인할 수 있습니다.
+
+#### 첫번째 방법
+<img src="{{ site.baseurl }}/assets/useDebounce/debounce_first.gif" alt="first debounce example" title="first debounce example" class="picture">
+
+#### 두번째 방법
+<img src="{{ site.baseurl }}/assets/useDebounce/debounce_second.gif" alt="second debounce example" title="second debounce example" class="picture">
+
+사용자의 이벤트가 모두 발생한 후 로직이 처리되는 경우라면 성능 측면에서도 유리한 두 번째 방법이 좋아보입니다.
+
+하지만 이벤트에 따라 변경되는 값이 계속해서 로직이 쓰이게 되는 상황이라면 첫번째 방법을 활용해서 코드를 짜셔야 될 것 같습니다.
+
+대부분의 경우에서는 두 번째 방법이 좀 더 좋을 것으로 예상하고 있습니다.
 
 ### 참고자료
 - [제네릭 타입에 관한 설명](https://hyunseob.github.io/2017/01/14/typescript-generic/)
