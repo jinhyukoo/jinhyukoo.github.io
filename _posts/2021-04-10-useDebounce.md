@@ -160,7 +160,7 @@ const onDebouncedPasswordChangeListener = useDebounce((e: React.ChangeEvent<HTML
 
 ```
 
-LoginModalContent같은 경우 위와 같이 코드를 변경해주었습니다. 이 때 상태값인 email이나 password가 아닌 e.target.value를 활용하여 값 비교를 해주었는데 useState hook을 활용하여 상태를 변경시킬 경우 비동기로 처리 되기 때문에 email이나 password를 대상으로 비교 연산을 진행하면 이전 값과 비교를 하게 되어 원하는 결과를 얻을 수 없기 때문입니다. 
+LoginModalContent같은 경우 위와 같이 코드를 변경해주었습니다. 이 때 상태값인 email이나 password가 아닌 e.target.value를 활용하여 값 비교를 해주었는데 useState hook을 활용하여 상태를 변경시킬 경우 비동기로 처리 되기 때문에 email이나 password를 대상으로 비교 연산을 진행하면 이전 값과 비교를 하게 되어 원하는 결과를 얻을 수 없기 때문입니다. 만약 email이나 password를 사용하여 로직을 구성하고 싶으시다면 useEffect를 활용하여 setState가 완료 된 후 리렌더링이 진행될 때 로직을 실행시키시면 됩니다.
 
 제가 진행하고 있는 프로젝트 기준 두 방법의 차이는 다음과 같습니다.
 - 첫 번째 방법의 경우 email의 상태는 계속해서 변화하지만 email이 변화하는 동안에 유효성 검사 로직이 실행되지 않습니다. 즉 비교 연산에만 debounce가 적용되었습니다.
