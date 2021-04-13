@@ -8,6 +8,8 @@ cover: "/assets/instacode.png"
 categories: WEB
 ---
 
+공부를 하며 블로그 글을 쓰기 때문에 틀린 부분이 있을 수 있습니다. 혹시라도 틀린 부분이 있을 경우 바로 잡아주시면 감사드립니다.
+
 ### 문제 상황 🤷‍♂️
 
 로그인, 회원가입 기능을 구현하던 중 예외 처리를 체크해야 할 일이 생겼습니다.  
@@ -177,6 +179,10 @@ LoginModalContent같은 경우 위와 같이 코드를 변경해주었습니다.
 
 #### 두번째 방법
 <img src="{{ site.baseurl }}/assets/useDebounce/debounce_second.gif" alt="second debounce example" title="second debounce example" class="picture">
+
+첫 번째 방법과 같은 경우 입력이 일어날 때마다 state가 변화하기 때문에 리렌더링이 계속되는 것을 알 수 있습니다. 반면 두 번째 방법은 입력이 끝난 후 state가 변경되기 때문에 리렌더링이 입력이 끝날 때 한 번만 수행됩니다.
+
+### 결론
 
 사용자의 이벤트가 모두 발생한 후 로직이 처리되는 경우라면 성능 측면에서도 유리한 두 번째 방법이 좋아보입니다.
 
