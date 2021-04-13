@@ -138,39 +138,33 @@ export default useDebounce;
 ...
 
 const LoginModalContent = ({ onModalClose }: LoginModalContentProps): JSX.Element => {
-  const classes = useStyles();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isValidEmail, setIsValidEmail] = useState(true);
-  const [isValidPassword, setIsValidPassword] = useState(true);
+const classes = useStyles();
+const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+const [isValidEmail, setIsValidEmail] = useState(true);
+const [isValidPassword, setIsValidPassword] = useState(true);
 
-  const onDebouncedEmailChangeListener = useDebounce((e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  }, 500);
+const onDebouncedEmailChangeListener = useDebounce((e: React.ChangeEvent<HTMLInputElement>) => {
+  setEmail(e.target.value);
+  if ((e.target.value.length !== 0 && e.target.value.length < 8) || e.target.value.length > 12) setIsValidEmail(false);
+  else setIsValidEmail(true);
+}, 500);
 
-  const onDebouncedPasswordChangeListener = useDebounce((e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  }, 500);
-
-  useEffect(() => {
-    if ((email.length !== 0 && email.length < 8) || email.length > 12) setIsValidEmail(false);
-    else setIsValidEmail(true);
-  }, [email]);
-
-  useEffect(() => {
-    if ((password.length !== 0 && password.length < 8) || password.length > 12) setIsValidPassword(false);
-    else setIsValidPassword(true);
-  }, [password]);
+const onDebouncedPasswordChangeListener = useDebounce((e: React.ChangeEvent<HTMLInputElement>) => {
+  setPassword(e.target.value);
+  if ((e.target.value.length !== 0 && e.target.value.length < 8) || e.target.value.length > 12) setIsValidPassword(false);
+  else setIsValidPassword(true);
+}, 500);
 
 ...
 
 ```
 
-LoginModalContent같은 경우 위와 같이 코드를 변경해주었습니다. 함수를 전달 받아서 실행할 수 있으니 onChange에 바로 debounce를 적용시킨 Listener를 넘겨줘도 되지 않나라고 생각하실 수 있는데 useState로 상태값을 변경하게 될 경우 비동기로 작동하기 때문에 변경된 상태값을 바로 활용할 수 없습니다. 따라서 이전 상태를 토대로 렌더링이 되기 때문에 useEffect를 활용하여 상태값이 변할 때마다 입력값이 유효한지 검사해주었습니다. email과 password가 서로에게 영향을 끼치지 않기 때문에 비즈니스 로직을 한 번만 수행하고자 useEffect를 두 번 사용했습니다.
+LoginModalContent같은 경우 위와 같이 코드를 변경해주었습니다. 이 때 상태값인 email이나 password가 아닌 e.target.value를 활용하여 값 비교를 해주었는데 useState hook을 활용하여 상태를 변경시킬 경우 비동기로 처리 되기 때문에 email이나 password를 대상으로 비교 연산을 진행하면 이전 값과 비교를 하게 되어 원하는 결과를 얻을 수 없기 때문입니다. 
 
-저의 프로젝트 기준 두 방법의 차이는 다음과 같습니다.
-- 첫 번째 방법의 경우 email의 상태는 계속해서 변화하지만 email이 변화하는 동안에 유효성 검사 로직이 실행되지 않습니다.
-- 두 번째 방법은 email의 상태 변화 자체에 debounce를 적용시킨 경우입니다. 유저가 입력 이벤트 지속하는 동안 email의 상태 자체가 변하지 않습니다.
+제가 진행하고 있는 프로젝트 기준 두 방법의 차이는 다음과 같습니다.
+- 첫 번째 방법의 경우 email의 상태는 계속해서 변화하지만 email이 변화하는 동안에 유효성 검사 로직이 실행되지 않습니다. 즉 비교 연산에만 debounce가 적용되었습니다.
+- 두 번째 방법은 email의 상태 변화에도 debounce를 적용시킨 경우입니다. 유저가 입력 이벤트 지속하는 동안 email의 상태 자체가 변하지 않으며 비교 연산 역시 진행되지 않습니다.
 
 따라서 성능 측면에서는 두 번째 방법이 유리합니다. 리액트 개발자 도구를 활용하여 렌더링 상태를 보면 다음과 같이 차이가 난다는 것을 확인할 수 있습니다.
 
@@ -188,7 +182,7 @@ LoginModalContent같은 경우 위와 같이 코드를 변경해주었습니다.
 
 하지만 이벤트에 따라 변경되는 값이 계속해서 로직이 쓰이게 되는 상황이라면 첫번째 방법을 활용해서 코드를 짜셔야 될 것 같습니다.
 
-대부분의 경우에서는 두 번째 방법이 좀 더 좋을 것으로 예상하고 있습니다.
+대부분의 경우 두 번째 방법이 성능적으로 좀 더 좋을 것으로 예상합니다.
 
 ### 참고자료
 - [제네릭 타입에 관한 설명](https://hyunseob.github.io/2017/01/14/typescript-generic/)
